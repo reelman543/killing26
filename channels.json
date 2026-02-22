@@ -1,0 +1,17 @@
+
+[
+  {
+    "name": "Test Spor 1",
+    "url": "https://example.com/live/stream1.m3u8",
+    "logo": "https://example.com/logo1.png",
+    "group": "SPOR",
+    "check": true
+  },
+  {
+    "name": "Test Haber",
+    "url": "https://example.com/live/stream2.m3u8",
+    "logo": "https://example.com/logo2.png",
+    "group": "HABER",
+    "check": false
+  }
+]
