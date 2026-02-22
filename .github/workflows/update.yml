@@ -1,0 +1,34 @@
+
+name: Otomatik M3U Güncelleme
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+
+      - run: |
+          pip install -r requirements.txt
+
+      - run: python generate_m3u.py
+
+      - run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add playlist.m3u
+          git diff --cached --quiet || git commit -m "Playlist Güncellendi"
+          git push
